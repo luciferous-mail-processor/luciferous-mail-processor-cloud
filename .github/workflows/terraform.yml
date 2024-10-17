@@ -45,7 +45,3 @@ jobs:
       - name: terraform apply
         run: terraform apply -auto-approve
         if: ${{ github.ref_type == 'tag' }}
-      - name: terraform output
-        run: terraform output
-        if: ${{ github.ref_type == 'tag' }}
-
