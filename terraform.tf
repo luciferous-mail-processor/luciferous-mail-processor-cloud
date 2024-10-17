@@ -12,12 +12,7 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "<bucket>"
-    key            = "<key>"
-    dynamodb_table = "<table>"
-    region         = "<region>"
-  }
+  backend "s3" {}
 }
 
 # ================================================================

@@ -1,5 +1,12 @@
 SHELL = /usr/bin/env bash -xeuo pipefail
 
+terraform-init:
+	terraform init \
+		-backend-config="bucket=$$TERRAFORM_BACKEND_S3_BUCKET" \
+		-backend-config="key=$$TERRAFORM_BACKEND_S3_KEY" \
+		-backend-config="dynamodb_table=$$TERRAFORM_BACKEND_S3_DYNAMODB_TABLE" \
+		-backend-config="region=$$TERRAFORM_BACKEND_S3_REGION"
+
 format: \
 	fmt-terraform \
 	fmt-python
