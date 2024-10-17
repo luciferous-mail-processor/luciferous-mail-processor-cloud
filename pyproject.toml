@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "template-lambda-by-terraform"
+version = "0.1.0"
+description = ""
+authors = ["sinofseven <em.s.00001@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.powertools.dependencies]
+# arn:aws:lambda:ap-northeast-1:017000801446:layer:AWSLambdaPowertoolsPythonV3-python312-arm64:2
+aws-lambda-powertools = {version = "3.1.0", extras = ["all"]}
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.9"
+pytest = "^8.3.3"
+boto3 = "^1.35.39"
+boto3-stubs = {extras = ["events"], version = "^1.35.39"}
+aws-cloudwatch-logs-url = "^1.0.3"
+freezegun = "^1.5.1"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::DeprecationWarning:botocore.*"
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
