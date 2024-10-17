@@ -5,9 +5,9 @@ on:
       - ".vscode/**"
       - ".idea/**"
       - ".gitignore"
-    branches:
     tags:
       - "v*"
+    branches:
 
 permissions:
   id-token: write
