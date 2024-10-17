@@ -25,11 +25,11 @@ terraform {
 # ================================================================
 
 provider "aws" {
-  region = var.region
+  region = var.REGION
 
   default_tags {
     tags = {
-      SystemName = var.system_name
+      SystemName = var.SYSTEM_NAME
     }
   }
 }
@@ -41,9 +41,10 @@ provider "aws" {
 module "common" {
   source = "./terraform_modules/common"
 
-  system_name = var.system_name
-  region      = var.region
+  system_name = var.SYSTEM_NAME
+  region      = var.REGION
 
+  layer_arn_base                           = var.LAYER_ARN_BASE
   slack_incoming_webhook_error_notifier_01 = var.SLACK_INCOMING_WEBHOOK_ERROR_NOTIFIER_01
 }
 
@@ -51,12 +52,17 @@ module "common" {
 # Variables
 # ================================================================
 
-variable "system_name" {
+variable "SYSTEM_NAME" {
   type     = string
   nullable = false
 }
 
-variable "region" {
+variable "REGION" {
+  type     = string
+  nullable = false
+}
+
+variable "LAYER_ARN_BASE" {
   type     = string
   nullable = false
 }

@@ -135,7 +135,10 @@ files = [
 
 [package.dependencies]
 botocore-stubs = "*"
+mypy-boto3-dynamodb = {version = ">=1.35.0,<1.36.0", optional = true, markers = "extra == \"dynamodb\""}
 mypy-boto3-events = {version = ">=1.35.0,<1.36.0", optional = true, markers = "extra == \"events\""}
+mypy-boto3-s3 = {version = ">=1.35.0,<1.36.0", optional = true, markers = "extra == \"s3\""}
+mypy-boto3-sqs = {version = ">=1.35.0,<1.36.0", optional = true, markers = "extra == \"sqs\""}
 types-s3transfer = "*"
 
 [package.extras]
@@ -771,6 +774,17 @@ files = [
 ply = "*"
 
 [[package]]
+name = "mypy-boto3-dynamodb"
+version = "1.35.24"
+description = "Type annotations for boto3.DynamoDB 1.35.24 service generated with mypy-boto3-builder 8.1.1"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "mypy_boto3_dynamodb-1.35.24-py3-none-any.whl", hash = "sha256:022859543c5314f14fb03ef4e445e34b97b9bc0cecb003c14c10943a2eaa3ff7"},
+    {file = "mypy_boto3_dynamodb-1.35.24.tar.gz", hash = "sha256:55bf897a1d0e354579edb05001f4bc4f472b9452badd9db24876c31bdf3f72a1"},
+]
+
+[[package]]
 name = "mypy-boto3-events"
 version = "1.35.0"
 description = "Type annotations for boto3.EventBridge 1.35.0 service generated with mypy-boto3-builder 7.26.0"
@@ -779,6 +793,28 @@ python-versions = ">=3.8"
 files = [
     {file = "mypy_boto3_events-1.35.0-py3-none-any.whl", hash = "sha256:7490d9720cef3a0b475d8ef7171886cc688ef3efd37cd8a467a3dac5f01aac02"},
     {file = "mypy_boto3_events-1.35.0.tar.gz", hash = "sha256:2172465ddfc9f84c0dd45707a1f3eaf406ad632b03e8546b9f2dfd333a85eb26"},
+]
+
+[[package]]
+name = "mypy-boto3-s3"
+version = "1.35.42"
+description = "Type annotations for boto3.S3 1.35.42 service generated with mypy-boto3-builder 8.1.2"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "mypy_boto3_s3-1.35.42-py3-none-any.whl", hash = "sha256:4e47094a43012be18e8ce858d6ec50f6505ba1d5364ca611093d9f736a38e8b2"},
+    {file = "mypy_boto3_s3-1.35.42.tar.gz", hash = "sha256:2d040c05d68a161d91c4b72926127034da28ade98d480def6a9569ab7655cddd"},
+]
+
+[[package]]
+name = "mypy-boto3-sqs"
+version = "1.35.0"
+description = "Type annotations for boto3.SQS 1.35.0 service generated with mypy-boto3-builder 7.26.0"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "mypy_boto3_sqs-1.35.0-py3-none-any.whl", hash = "sha256:9fd6e622ed231c06f7542ba6f8f0eea92046cace24defa95d0d0ce04e7caee0c"},
+    {file = "mypy_boto3_sqs-1.35.0.tar.gz", hash = "sha256:61752f1c2bf2efa3815f64d43c25b4a39dbdbd9e472ae48aa18d7c6d2a7a6eb8"},
 ]
 
 [[package]]
@@ -1174,4 +1210,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "011760812add3177b01b076557d3ad7ab9d3f729f6a88747f1361d47f525c446"
+content-hash = "e579f44e89cac96d02d799939a6c682dd397fab7d2e99636d8cdc610466d19e7"

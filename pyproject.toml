@@ -17,10 +17,12 @@ aws-lambda-powertools = {version = "3.1.0", extras = ["all"]}
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.6.9"
 pytest = "^8.3.3"
-boto3 = "^1.35.39"
-boto3-stubs = {extras = ["events"], version = "^1.35.39"}
-aws-cloudwatch-logs-url = "^1.0.3"
 freezegun = "^1.5.1"
+
+[tool.poetry.group.base_layer.dependencies]
+boto3 = "1.35.39"
+boto3-stubs = {version = "1.35.39", extras = ["dynamodb", "events", "s3", "sqs"]}
+aws-cloudwatch-logs-url = "1.0.3"
 
 [tool.pytest.ini_options]
 filterwarnings = [
