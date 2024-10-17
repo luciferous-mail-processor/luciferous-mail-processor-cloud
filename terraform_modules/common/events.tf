@@ -3,7 +3,7 @@
 # ================================================================
 
 resource "aws_cloudwatch_event_connection" "slack_dummy" {
-  authorization_type = "API KEY"
+  authorization_type = "API_KEY"
   name               = "slack-dummy"
 
   auth_parameters {
