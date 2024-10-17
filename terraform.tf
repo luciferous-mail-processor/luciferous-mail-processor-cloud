@@ -39,6 +39,7 @@ module "common" {
   system_name = var.SYSTEM_NAME
   region      = var.REGION
 
+  receiving_mail_domain                    = var.RECEIVING_MAIL_DOMAIN
   layer_arn_base                           = var.LAYER_ARN_BASE
   slack_incoming_webhook_error_notifier_01 = var.SLACK_INCOMING_WEBHOOK_ERROR_NOTIFIER_01
 }
@@ -60,6 +61,12 @@ variable "REGION" {
 variable "LAYER_ARN_BASE" {
   type     = string
   nullable = false
+}
+
+variable "RECEIVING_MAIL_DOMAIN" {
+  type      = string
+  nullable  = false
+  sensitive = true
 }
 
 variable "SLACK_INCOMING_WEBHOOK_ERROR_NOTIFIER_01" {

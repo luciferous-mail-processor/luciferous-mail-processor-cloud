@@ -13,6 +13,12 @@ variable "layer_arn_base" {
   nullable = false
 }
 
+variable "receiving_mail_domain" {
+  type      = string
+  nullable  = false
+  sensitive = true
+}
+
 variable "slack_incoming_webhook_error_notifier_01" {
   type      = string
   nullable  = false
