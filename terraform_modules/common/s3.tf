@@ -44,3 +44,13 @@ resource "aws_s3_bucket_policy" "mailbox" {
   bucket = aws_s3_bucket.mailbox.bucket
   policy = data.aws_iam_policy_document.bucket_policy_mailbox.json
 }
+
+resource "aws_s3_bucket_notification" "mailbox" {
+  bucket = aws_s3_bucket.mailbox.id
+
+  queue {
+    events        = ["s3:ObjectCreated:*"]
+    queue_arn     = aws_sqs_queue.mail_analyzer.arn
+    filter_prefix = local.ses.s3_action.prefix
+  }
+}

@@ -1,6 +1,9 @@
 locals {
   ses = {
     receipt_rule_name = "mailbox"
+    s3_action = {
+      prefix = "mailbox"
+    }
   }
 }
 
@@ -20,7 +23,7 @@ resource "aws_ses_receipt_rule" "mailbox" {
   s3_action {
     bucket_name       = aws_s3_bucket.mailbox.bucket
     position          = 1
-    object_key_prefix = "mailbox"
+    object_key_prefix = local.ses.s3_action.prefix
   }
 }
 

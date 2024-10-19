@@ -51,3 +51,42 @@ resource "aws_lambda_permission" "error_processor" {
   function_name = module.lambda_error_processor.function_arn
   principal     = "logs.amazonaws.com"
 }
+
+# ================================================================
+# Lambda Mail Analyzer
+# ================================================================
+
+module "lambda_mail_analyzer" {
+  source = "../lambda_function"
+
+  identifier = "mail_analyzer"
+  handler    = "handlers/mail_analyzer/mail_analyzer.handler"
+  role_arn   = aws_iam_role.lambda_mail_analyzer.arn
+  layers     = [var.layer_arn_base]
+  timeout    = aws_sqs_queue.mail_analyzer.visibility_timeout_seconds
+
+  environment_variables = {
+    TABLE_ADDRESSES = aws_dynamodb_table.mail_addresses.name
+    TABLE_MAILS     = aws_dynamodb_table.mails.name
+  }
+
+  s3_bucket_deploy_package = aws_s3_object.lambda_deploy_package.bucket
+  s3_key_deploy_package    = aws_s3_object.lambda_deploy_package.key
+  source_code_hash         = data.archive_file.lambda_deploy_package.output_base64sha256
+  system_name              = var.system_name
+  runtime                  = local.lambda.runtime
+  region                   = var.region
+
+  subscription_destination_lambda_arn = module.lambda_error_processor.function_arn
+}
+
+
+resource "aws_lambda_event_source_mapping" "mail_analyzer" {
+  function_name    = module.lambda_mail_analyzer.function_alias_arn
+  event_source_arn = aws_sqs_queue.mail_analyzer.arn
+  batch_size       = 1
+
+  scaling_config {
+    maximum_concurrency = 20
+  }
+}

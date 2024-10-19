@@ -90,6 +90,24 @@ resource "aws_iam_role_policy_attachment" "lambda_error_processor" {
 }
 
 # ================================================================
+# Role Lambda Mail Analyzer
+# ================================================================
+
+resource "aws_iam_role" "lambda_mail_analyzer" {
+  assume_role_policy = data.aws_iam_policy_document.assume_role_policy_lambda.json
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_mail_analyzer" {
+  for_each = {
+    a = "arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole"
+    b = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+    c = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+  }
+  policy_arn = each.value
+  role       = aws_iam_role.lambda_mail_analyzer.name
+}
+
+# ================================================================
 # Role EventBridge Invoke API Destination
 # ================================================================
 
